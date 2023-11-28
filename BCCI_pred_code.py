@@ -265,149 +265,149 @@ if __name__ == '__main__':
             OneHot_X_val = np.hstack([OneHot_X_val,np.reshape(X_val[:,i],(len(X_val[:,i]),1))])
             OHtypes.append("cont")
 
-    # max_depths = np.arange(15,46,1)
-    # accuracies = []
-    # for depth in max_depths:
-    #     OHtree = DTTree()
-    #     OHtree.fit(OneHot_X_train,y_train[:,0],OHtypes, max_depth = depth)
-    #     Pred = OHtree.__call__(OneHot_X_test,OHtypes)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(max_depths,accuracies)
-    # plt.xlabel('Maximum depths')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of one hot accuracy with max depth')
-    # plt.show()
+    max_depths = np.arange(15,46,1)
+    accuracies = []
+    for depth in max_depths:
+        OHtree = DTTree()
+        OHtree.fit(OneHot_X_train,y_train[:,0],OHtypes, max_depth = depth)
+        Pred = OHtree.__call__(OneHot_X_test,OHtypes)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(max_depths,accuracies)
+    plt.xlabel('Maximum depths')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of one hot accuracy with max depth')
+    plt.show()
 
-    # max_depths = np.arange(15,46,10)
-    # accuracies = []
-    # for depth in max_depths:
-    #     OHtree = DTTree()
-    #     OHtree.fit(OneHot_X_train,y_train[:,0],OHtypes, max_depth = depth)
-    #     OHtree.post_prune(OneHot_X_val, y_val,OHtypes,0.5)
-    #     Pred_test = OHtree.__call__(OneHot_X_test,OHtypes)
-    #     Pred_train = OHtree.__call__(OneHot_X_train,OHtypes)
-    #     Pred_val = OHtree.__call__(OneHot_X_val,OHtypes)
-    #     accuracies.append([len(np.where(Pred_test[:,0]==y_test[:,0])[0])/len(Pred_test),len(np.where(Pred_val[:,0]==y_val[:,0])[0])/len(Pred_val),len(np.where(Pred_train[:,0]==y_train[:,0])[0])/len(Pred_train)])
-    # accuracies = np.array(accuracies)
-    # print(accuracies[:,0])
-    # plt.figure()
-    # plt.plot(max_depths,accuracies[:,0])
-    # plt.xlabel('Maximum depths')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of One Hot accuracy with max depth using post prune')
-    # plt.show()
-    # print(accuracies[:,1])
-    # plt.figure()
-    # plt.plot(max_depths,accuracies[:,1])
-    # plt.xlabel('Maximum depths')
-    # plt.ylabel('Accuracies in validation set')
-    # plt.title('Variation of One Hot accuracy with max depth using post prune')
-    # plt.show()
-    # print(accuracies[:,2])
-    # plt.figure()
-    # plt.plot(max_depths,accuracies[:,2])
-    # plt.xlabel('Maximum depths')
-    # plt.ylabel('Accuracies in Train set')
-    # plt.title('Variation of One Hot accuracy with max depth using post prune')
-    # plt.show()
+    max_depths = np.arange(15,46,10)
+    accuracies = []
+    for depth in max_depths:
+        OHtree = DTTree()
+        OHtree.fit(OneHot_X_train,y_train[:,0],OHtypes, max_depth = depth)
+        OHtree.post_prune(OneHot_X_val, y_val,OHtypes,0.5)
+        Pred_test = OHtree.__call__(OneHot_X_test,OHtypes)
+        Pred_train = OHtree.__call__(OneHot_X_train,OHtypes)
+        Pred_val = OHtree.__call__(OneHot_X_val,OHtypes)
+        accuracies.append([len(np.where(Pred_test[:,0]==y_test[:,0])[0])/len(Pred_test),len(np.where(Pred_val[:,0]==y_val[:,0])[0])/len(Pred_val),len(np.where(Pred_train[:,0]==y_train[:,0])[0])/len(Pred_train)])
+    accuracies = np.array(accuracies)
+    print(accuracies[:,0])
+    plt.figure()
+    plt.plot(max_depths,accuracies[:,0])
+    plt.xlabel('Maximum depths')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of One Hot accuracy with max depth using post prune')
+    plt.show()
+    print(accuracies[:,1])
+    plt.figure()
+    plt.plot(max_depths,accuracies[:,1])
+    plt.xlabel('Maximum depths')
+    plt.ylabel('Accuracies in validation set')
+    plt.title('Variation of One Hot accuracy with max depth using post prune')
+    plt.show()
+    print(accuracies[:,2])
+    plt.figure()
+    plt.plot(max_depths,accuracies[:,2])
+    plt.xlabel('Maximum depths')
+    plt.ylabel('Accuracies in Train set')
+    plt.title('Variation of One Hot accuracy with max depth using post prune')
+    plt.show()
 
-    # max_depths = np.arange(15,46,1)
-    # accuracies = []
-    # for depth in max_depths:
-    #     dtree = DecisionTreeClassifier(max_depth=depth,criterion="entropy",random_state=42)
-    #     dtree.fit(X_train, y_train)
-    #     Pred = dtree.predict(X_test)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(max_depths,accuracies)
-    # plt.xlabel('Maximum depths')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of sklearn accuracy with max depth')
-    # plt.show()
-    # best_depth = max_depths[np.argmax(np.array(accuracies))]
+    max_depths = np.arange(15,46,1)
+    accuracies = []
+    for depth in max_depths:
+        dtree = DecisionTreeClassifier(max_depth=depth,criterion="entropy",random_state=42)
+        dtree.fit(X_train, y_train)
+        Pred = dtree.predict(X_test)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(max_depths,accuracies)
+    plt.xlabel('Maximum depths')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of sklearn accuracy with max depth')
+    plt.show()
+    best_depth = max_depths[np.argmax(np.array(accuracies))]
 
-    # CCP_alpha = [0.001, 0.01, 0.1, 0.2]
-    # accuracies = []
-    # for ccp in CCP_alpha:
-    #     dtree = DecisionTreeClassifier(criterion="entropy",random_state=42,ccp_alpha=ccp)
-    #     dtree.fit(X_train, y_train)
-    #     Pred = dtree.predict(X_test)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(CCP_alpha,accuracies)
-    # plt.xlabel('pruning parameter')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of sklearn accuracy with pruning parameter')
-    # plt.show()
-    # best_prun_para = CCP_alpha[np.argmax(np.array(accuracies))]
+    CCP_alpha = [0.001, 0.01, 0.1, 0.2]
+    accuracies = []
+    for ccp in CCP_alpha:
+        dtree = DecisionTreeClassifier(criterion="entropy",random_state=42,ccp_alpha=ccp)
+        dtree.fit(X_train, y_train)
+        Pred = dtree.predict(X_test)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(CCP_alpha,accuracies)
+    plt.xlabel('pruning parameter')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of sklearn accuracy with pruning parameter')
+    plt.show()
+    best_prun_para = CCP_alpha[np.argmax(np.array(accuracies))]
 
-    # print(best_depth,best_prun_para)
+    print(best_depth,best_prun_para)
 
-    # n_estimators = np.arange(50,351,100)
-    # accuracies = []
-    # for estim in n_estimators:
-    #     Forest = RandomForestClassifier(n_estimators = estim, random_state=42)
-    #     Forest.fit(X_train, y_train[:,0])
-    #     Pred = Forest.predict(X_test)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(n_estimators,accuracies)
-    # plt.xlabel('N Estimator')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of sklearn accuracy with N Estimator')
-    # plt.show()
+    n_estimators = np.arange(50,351,100)
+    accuracies = []
+    for estim in n_estimators:
+        Forest = RandomForestClassifier(n_estimators = estim, random_state=42)
+        Forest.fit(X_train, y_train[:,0])
+        Pred = Forest.predict(X_test)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(n_estimators,accuracies)
+    plt.xlabel('N Estimator')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of sklearn accuracy with N Estimator')
+    plt.show()
 
-    # max_samples = np.arange(0.1,1,0.2)
-    # accuracies = []
-    # for sample in max_samples:
-    #     Forest = RandomForestClassifier(max_samples=sample, random_state=42)
-    #     Forest.fit(X_train, y_train[:,0])
-    #     Pred = Forest.predict(X_test)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(max_samples,accuracies)
-    # plt.xlabel('max samples')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of sklearn accuracy with max_samples')
-    # plt.show()
+    max_samples = np.arange(0.1,1,0.2)
+    accuracies = []
+    for sample in max_samples:
+        Forest = RandomForestClassifier(max_samples=sample, random_state=42)
+        Forest.fit(X_train, y_train[:,0])
+        Pred = Forest.predict(X_test)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(max_samples,accuracies)
+    plt.xlabel('max samples')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of sklearn accuracy with max_samples')
+    plt.show()
 
-    # min_samples_split = np.arange(2,11,2)
-    # accuracies = []
-    # for splitt in min_samples_split:
-    #     Forest = RandomForestClassifier(min_samples_split=splitt, random_state=42)
-    #     Forest.fit(X_train, y_train[:,0])
-    #     Pred = Forest.predict(X_test)
-    #     accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
-    # print(accuracies)
-    # plt.figure()
-    # plt.plot(min_samples_split,accuracies)
-    # plt.xlabel(' min samples split')
-    # plt.ylabel('Accuracies in test set')
-    # plt.title('Variation of sklearn accuracy with min samples split')
-    # plt.show()
+    min_samples_split = np.arange(2,11,2)
+    accuracies = []
+    for splitt in min_samples_split:
+        Forest = RandomForestClassifier(min_samples_split=splitt, random_state=42)
+        Forest.fit(X_train, y_train[:,0])
+        Pred = Forest.predict(X_test)
+        accuracies.append(len(np.where(Pred==y_test[:,0])[0])/len(Pred))
+    print(accuracies)
+    plt.figure()
+    plt.plot(min_samples_split,accuracies)
+    plt.xlabel(' min samples split')
+    plt.ylabel('Accuracies in test set')
+    plt.title('Variation of sklearn accuracy with min samples split')
+    plt.show()
 
-    # param_grid = {
-    # 'n_estimators': [50, 150, 250, 350],
-    # 'max_features': [0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
-    # 'min_samples_split': [2, 4, 6, 8, 10]
-    # }
-    # Forest = RandomForestClassifier(oob_score=True, random_state=42)
-    # Grids = GridSearchCV(Forest, param_grid, cv=5, scoring='accuracy', n_jobs=-1)
-    # Grids.fit(X_train, y_train)
-    # Best_para = Grids.best_params_
-    # Best_classifier = Grids.best_estimator_
-    # train_accuracy = Best_classifier.score(X_train, y_train)
-    # validation_accuracy = Best_classifier.score(X_val, y_val)
-    # test_accuracy = Best_classifier.score(X_test, y_test)
+    param_grid = {
+    'n_estimators': [50, 150, 250, 350],
+    'max_features': [0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    'min_samples_split': [2, 4, 6, 8, 10]
+    }
+    Forest = RandomForestClassifier(oob_score=True, random_state=42)
+    Grids = GridSearchCV(Forest, param_grid, cv=5, scoring='accuracy', n_jobs=-1)
+    Grids.fit(X_train, y_train)
+    Best_para = Grids.best_params_
+    Best_classifier = Grids.best_estimator_
+    train_accuracy = Best_classifier.score(X_train, y_train)
+    validation_accuracy = Best_classifier.score(X_val, y_val)
+    test_accuracy = Best_classifier.score(X_test, y_test)
 
-    # print("Best Parameters:", Best_para)
-    # print("Train Accuracy:", train_accuracy)
-    # print("Validation Accuracy:", validation_accuracy)
-    # print("Test Accuracy:", test_accuracy)
-    # print("Out-of-Bag Accuracy (OOB):", Best_classifier.oob_score_)
+    print("Best Parameters:", Best_para)
+    print("Train Accuracy:", train_accuracy)
+    print("Validation Accuracy:", validation_accuracy)
+    print("Test Accuracy:", test_accuracy)
+    print("Out-of-Bag Accuracy (OOB):", Best_classifier.oob_score_)
